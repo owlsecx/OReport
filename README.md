@@ -18,21 +18,18 @@
 
 ## 📌 Overview
 
-Pentest report & findings generator (CVSS 3.1, MD/HTML/JSON export)
+OReport is a penetration-test report and findings generator. It manages findings with CWE tagging and evidence hashing, calculates CVSS 3.1 scores, and renders engagement reports as Markdown, HTML, TXT, JSON or CSV. It can import findings from JSON/CSV and Nessus/Nmap exports and redact client-sensitive data.
 
 ---
 
 ## ✨ Features
 
-- Findings manager — add / edit / delete / clone, CWE tagging, affected assets, references, status, evidence files hashed (SHA-256) — never embedded
-- Full CVSS 3.1 calculator — vector parser with strict validation, base / temporal / environmental scores, sub-scores and qualitative severity rating
-- Engagement metadata — client, scope (in / out), dates, methodology, team, rules of engagement
-- Executive summary generator from finding stats, severity distribution bars, likelihood × impact ASCII risk matrix, overall posture rating
-- Import findings from JSON / CSV, plus graceful Nessus-style and Nmap-style CSV parsers
-- Render Markdown, self-contained HTML (inline CSS, no external assets), plain TXT, JSON and a CSV findings register — with location chooser
-- Scoring dashboard — severity counts, SLA and remediation timeline, diff vs previous report
-- Redaction engine — mask IPs, e-mails, secrets, tokens, hashes and hostnames for client-safe export
-- Full CLI (--new-project, --add-finding, --import, --render md|html|json|txt|csv, --cvss VECTOR, ...)
+- Findings manager with CWE tagging, affected assets and SHA-256 evidence hashing
+- Full CVSS 3.1 calculator with base, temporal and environmental scoring
+- Engagement metadata and an auto-generated executive summary with an ASCII risk matrix
+- Import from JSON/CSV plus Nessus- and Nmap-style CSV parsers
+- Render Markdown, self-contained HTML, TXT, JSON and CSV outputs
+- Redaction engine and a scoring dashboard with trend diffing against previous reports
 
 ---
 
@@ -46,7 +43,10 @@ Pentest report & findings generator (CVSS 3.1, MD/HTML/JSON export)
 ## 🚀 Usage
 
 ```bash
-./OReport
+./OReport --new-project "Acme Q4" --client Acme
+./OReport --add-finding "SQL Injection" --vector "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H" --cwe 89
+./OReport --render all -o ./out
+./OReport --help
 ```
 
 ---
